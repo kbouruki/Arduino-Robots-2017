@@ -1,0 +1,178 @@
+     int buttonPin = 10;     // the number of the pushbutton pin
+     int buttonState = 0;        // variables will change:  // variable for reading the pushbutton status
+
+     int OneEnable = 9;
+     int TwoEnable = 8;
+  // int ThreeEnable = 11;
+
+     int OneMotorL = 2;
+     int OneMotorR = 4;
+
+     int TwoMotorL = 6;  
+     int TwoMotorR = 7;  
+
+  // int ThreeMotorL = 12;  
+  // int ThreeMotorR = 13;  
+
+
+void setup()
+{
+  Serial.begin(9600);
+
+  pinMode(OneEnable, OUTPUT); //enable motor 1
+  pinMode(TwoEnable, OUTPUT); //enable motor 2
+//pinMode(ThreeEnable, OUTPUT); //enable motor 3
+ // pinMode(buttonPin, INPUT);
+
+  
+  pinMode(OneMotorL, OUTPUT);
+  pinMode(OneMotorR, OUTPUT);
+  pinMode(TwoMotorL, OUTPUT);
+  pinMode(TwoMotorR, OUTPUT);
+//pinMode(ThreeMotorL, OUTPUT);
+//pinMode(ThreeMotorR, OUTPUT);
+}
+
+
+void loop()
+{
+ /*  {
+int buttonState = digitalRead(buttonPin);
+                                                     
+     
+    if (buttonState < 1) 
+*/
+{                                           
+    Serial.println("Forward 1 2 3 4 5");
+    digitalWrite(OneEnable, HIGH); //enable motor 1
+    digitalWrite(TwoEnable, HIGH); //enable motor 2
+    digitalWrite(OneMotorL, HIGH);
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, HIGH);
+    digitalWrite(TwoMotorR, LOW);
+    delay(5000);
+    Stop();
+    
+  
+    Serial.println("Left 1 2 3");
+    digitalWrite(OneMotorL, HIGH);
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, LOW);
+    digitalWrite(TwoMotorR, HIGH);
+    delay(3000);
+    Stop();
+    
+  
+    Serial.println("Right, 1 2 3");
+    digitalWrite(OneMotorL, LOW);
+    digitalWrite(OneMotorR, HIGH);
+    digitalWrite(TwoMotorL, HIGH);
+    digitalWrite(TwoMotorR, LOW);
+    delay(3000);
+    Stop();
+      
+  
+    Serial.println("Reverse");
+    digitalWrite(OneMotorL, LOW);
+    digitalWrite(OneMotorR, HIGH);
+    digitalWrite(TwoMotorL, LOW);
+    digitalWrite(TwoMotorR, HIGH);
+    delay(5000);
+    Stop();
+
+/*   else 
+{
+    digitalWrite(OneEnable, LOW); //enable motor 1
+    digitalWrite(TwoEnable, LOW); //enable motor 2         
+ }*/
+
+
+    
+    Serial.println("Thanks guys, goodnight"2);
+    Stop();
+    
+
+}   
+
+
+}
+
+// defining  functions
+
+void Stop(){ 
+digitalWrite(OneMotorL, LOW); 
+digitalWrite(OneMotorR, LOW); 
+
+digitalWrite(TwoMotorL, LOW); 
+digitalWrite(TwoMotorR, LOW);
+delay(500);
+}
+
+
+
+// Below is the code for testing Ultrasonic sensor. June 2 Khalid
+
+
+const int trigPin = 12;
+const int echoPin = 11;
+   int OneEnable = 9;
+   int TwoEnable = 8;
+   int OneMotorL = 2;
+   int OneMotorR = 4;
+   int TwoMotorL = 6;  
+   int TwoMotorR = 7;  
+     
+void setup() {
+  Serial.begin (9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(OneEnable, OUTPUT); //enable motor 1
+  pinMode(TwoEnable, OUTPUT); //enable motor 2
+  pinMode(OneMotorL, OUTPUT);
+  pinMode(OneMotorR, OUTPUT);
+  pinMode(TwoMotorL, OUTPUT);
+  pinMode(TwoMotorR, OUTPUT);
+}
+
+void loop() {
+  long duration, distance;
+ 
+  // Drive trigger pin LOw, HIGH, LOW to send the pulse
+  digitalWrite(trigPin, LOW); 
+  delayMicroseconds(5); // low for 2 microseconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10); // high for 10 microseconds
+  digitalWrite(trigPin, LOW);
+
+  // the pulseIn command waits for a given pin to go HIGH, and then 
+  // reports how long it waited until that happened
+  duration = pulseIn(echoPin, HIGH); // measure the time to the echo
+
+  // Convert to centimeters
+  distance = (duration/2) / 29.1;  // calculate the distance in cm
+
+  // Discard readings that are too large or too small to be reasonable
+  // It's pretty common for some sensors to give occasional bad readings
+  // and a good program must take that into account
+  if (distance == 200 || distance >= 0){
+    Serial.println("Out of range; reading invalid");
+    digitalWrite(OneEnable, HIGH); //enable motor 1
+    digitalWrite(TwoEnable, HIGH); //enable motor 2
+    digitalWrite(OneMotorL, HIGH);
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, HIGH);
+    digitalWrite(TwoMotorR, LOW);
+    
+  } else {
+    // anything left should be a valid distance
+    digitalWrite(OneEnable, LOW); //enable motor 1
+    digitalWrite(TwoEnable, LOW); //enable motor 2  
+    Serial.print(distance);
+    Serial.println(" cm");
+          
+  }
+
+ // insert second condition statement here
+
+  delay(500);   // wait before doing it again
+}
