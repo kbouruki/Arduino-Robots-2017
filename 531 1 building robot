@@ -1,0 +1,38 @@
+     int OneEnable = 9;            // Defining motor pins into LDR
+     int TwoEnable = 8;
+
+     int OneMotorL = 2;
+     int OneMotorR = 4;
+
+     int TwoMotorL = 6;  
+     int TwoMotorR = 7;  
+
+
+void setup() {                     // Defining outputs
+  
+  pinMode(OneEnable, OUTPUT);      //enable motor 1
+  pinMode(TwoEnable, OUTPUT);      //enable motor 2
+  
+  pinMode(OneMotorL, OUTPUT);
+  pinMode(OneMotorR, OUTPUT);
+  pinMode(TwoMotorL, OUTPUT);
+  pinMode(TwoMotorR, OUTPUT);
+}
+
+void loop() {                      // Assigning functions
+                    
+    digitalWrite(OneEnable, HIGH); //enable motor 1
+    digitalWrite(TwoEnable, HIGH); //enable motor 2
+   
+    digitalWrite(OneMotorL, HIGH); //Move forward
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, HIGH); //Move forward
+    digitalWrite(TwoMotorR, LOW);
+    delay(2000);                   //Delay 2 seconds
+  
+ }
+
+
+
+//simple movement code for initial robot
+
