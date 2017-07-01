@@ -1,0 +1,78 @@
+     int buttonPin = 10;     // the number of the pushbutton pin
+     int buttonState = 0;        // variables will change:  // variable for reading the pushbutton status
+
+     int OneEnable = 9;
+     int TwoEnable = 8;
+  // int ThreeEnable = 11;
+
+     int OneMotorL = 2;
+     int OneMotorR = 4;
+
+     int TwoMotorL = 6;  
+     int TwoMotorR = 7;  
+
+  // int ThreeMotorL = 12;  
+  // int ThreeMotorR = 13;  
+
+
+void setup()
+{
+  pinMode(OneEnable, OUTPUT); //enable motor 1
+  pinMode(TwoEnable, OUTPUT); //enable motor 2
+//pinMode(ThreeEnable, OUTPUT); //enable motor 3
+  pinMode(buttonPin, INPUT);
+
+  
+  pinMode(OneMotorL, OUTPUT);
+  pinMode(OneMotorR, OUTPUT);
+  pinMode(TwoMotorL, OUTPUT);
+  pinMode(TwoMotorR, OUTPUT);
+//pinMode(ThreeMotorL, OUTPUT);
+//pinMode(ThreeMotorR, OUTPUT);
+}
+
+
+void loop()
+{
+int buttonState = digitalRead(buttonPin);
+                                                     
+     
+    if (buttonState < 1)       
+
+{                                           
+    digitalWrite(OneEnable, HIGH); //enable motor 1
+    digitalWrite(TwoEnable, HIGH); //enable motor 2
+    digitalWrite(OneMotorL, HIGH);
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, HIGH);
+    digitalWrite(TwoMotorR, LOW);
+    delay(2000);
+  
+    digitalWrite(OneMotorL, HIGH);
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, LOW);
+    digitalWrite(TwoMotorR, HIGH);
+    delay(2000);
+  
+    digitalWrite(OneMotorL, LOW);
+    digitalWrite(OneMotorR, HIGH);
+    digitalWrite(TwoMotorL, HIGH);
+    digitalWrite(TwoMotorR, LOW);
+    delay(2000);
+  
+    digitalWrite(OneMotorL, LOW);
+    digitalWrite(OneMotorR, HIGH);
+    digitalWrite(TwoMotorL, LOW);
+    digitalWrite(TwoMotorR, HIGH);
+    delay(2000);
+}   
+
+  else 
+{
+    digitalWrite(OneEnable, LOW); //enable motor 1
+    digitalWrite(TwoEnable, LOW); //enable motor 2         
+ }
+
+
+}
+
