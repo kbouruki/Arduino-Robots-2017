@@ -1,0 +1,85 @@
+//code defining and using functions
+// code using "classes"
+
+     int OneEnable = 9;
+     
+     int TwoEnable = 8;
+
+     int OneMotorL = 2;
+     int OneMotorR = 4;
+
+     int TwoMotorL = 6;  
+     int TwoMotorR = 7;  
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+
+  pinMode(OneEnable, OUTPUT); //enable motor 1
+  pinMode(TwoEnable, OUTPUT); //enable motor 2
+  pinMode(OneMotorL, OUTPUT);
+  pinMode(OneMotorR, OUTPUT);
+  pinMode(TwoMotorL, OUTPUT);
+  pinMode(TwoMotorR, OUTPUT);
+}
+
+
+void loop()
+{
+
+                                       
+    Serial.println("Forward 1 2 3 4 5");
+    digitalWrite(OneEnable, HIGH); //enable motor 1
+    digitalWrite(TwoEnable, HIGH); //enable motor 2
+    digitalWrite(OneMotorL, HIGH);
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, HIGH);
+    digitalWrite(TwoMotorR, LOW);
+    delay(5000);
+    Stop();
+  
+    Serial.println("Left 1 2 3");
+    digitalWrite(OneMotorL, HIGH);
+    digitalWrite(OneMotorR, LOW);
+    digitalWrite(TwoMotorL, LOW);
+    digitalWrite(TwoMotorR, HIGH);
+    delay(3000);
+    Stop();
+   
+    Serial.println("Right, 1 2 3");
+    digitalWrite(OneMotorL, LOW);
+    digitalWrite(OneMotorR, HIGH);
+    digitalWrite(TwoMotorL, HIGH);
+    digitalWrite(TwoMotorR, LOW);
+    delay(3000);
+    Stop();
+  
+    Serial.println("Reverse");
+    digitalWrite(OneMotorL, LOW);
+    digitalWrite(OneMotorR, HIGH);
+    digitalWrite(TwoMotorL, LOW);
+    digitalWrite(TwoMotorR, HIGH);
+    delay(5000);
+    Stop();
+    
+    Serial.println("Thanks guys, goodnight"2);
+    Stop();
+    
+
+}   
+
+
+
+// defining  functions
+
+void Stop(){ 
+digitalWrite(OneMotorL, LOW); 
+digitalWrite(OneMotorR, LOW); 
+
+digitalWrite(TwoMotorL, LOW); 
+digitalWrite(TwoMotorR, LOW);
+delay(500);
+}
+
