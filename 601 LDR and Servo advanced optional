@@ -1,0 +1,52 @@
+#include <Servo.h>
+
+int sensorValue1 = 0;  // variable to store the value coming from the sensor
+int sensorValue2 = 0;  // variable to store the value coming from the sensor
+int sensorPin1 = A3;    // select the input pin for the potentiometer
+int sensorPin2 = A4;    // select the input pin for the potentiometer
+
+
+int difference = sensorValue1 - sensorValue2; // initial integer of difference between sensor 1 and 2
+
+Servo myservo; //create servo object to control a servo
+
+void setup() {
+  myservo.attach(12); 
+  Serial.begin(9600); 
+}
+
+void loop() {
+  sensorValue1 = analogRead(sensorPin1); // update sensorValue1
+  sensorValue2 = analogRead(sensorPin2); // update sensorValue2
+
+  difference = abs(sensorValue1 - sensorValue2);
+
+  printSensorValues();
+
+if (sensorValue1 > sensorValue2 && difference >= 30) {
+    myservo.write(170);
+    delay(1500);
+
+  } else if (sensorValue1 < sensorValue2 && difference >= 15) {
+    myservo.write(0);
+    delay(1500);
+
+  } else {
+    myservo.write(80);
+    delay(1500);
+  }
+  
+ Serial.print("Sensor 1: ");
+  Serial.print(sensorValue1);
+  Serial.print(" Sensor 2: ");
+  Serial.print(sensorValue2);
+  Serial.print(" Difference: ");
+  Serial.print(difference);
+
+  Serial.println();
+  delay(50);
+
+}
+
+
+ 
