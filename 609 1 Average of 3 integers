@@ -1,0 +1,46 @@
+int light = 0;  // average varialbe
+
+int sensorPin1 = A0;    // LDR 1
+int sensorPin2 = A1;    // 2
+int sensorPin3 = A2;    // 3
+
+int sensorValue1;  
+int sensorValue2;  
+int sensorValue3;  
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600); // initialize Serial
+}
+
+void loop() {
+ 
+ sensorValue1 = analogRead(sensorPin1); 
+  sensorValue2 = analogRead(sensorPin2); 
+  sensorValue3 = analogRead(sensorPin3); 
+
+  light = (sensorValue1 + sensorValue2 + sensorValue3) / 3;   // calculate average
+  return light;  // return "light" value
+  Serial.println(roomLight);  
+  delay(1);      
+  
+}
+
+
+
+
+/* classes
+
+int lightReading() {
+  sensorValue1 = analogRead(sensorPin1); 
+  sensorValue2 = analogRead(sensorPin2); 
+  sensorValue3 = analogRead(sensorPin3); 
+
+  light = (sensorValue1 + sensorValue2 + sensorValue3) / 3;   // calculate average
+
+  return light;  // return "light" value
+  
+  
+  */
+}
