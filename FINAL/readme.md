@@ -7,6 +7,9 @@ The idea is to have a sensor (initially i was thinking a Sonar) to activate quic
 
 
 
+
+
+
 Technical descripltion
 
 The idea is an automous gliding steering system intended to detect hazards (incoming long-distance hazards) and enable a mechanism to pull and steer the wing into the proper direction. It uses 2 ultrasonic sensors on each side to detect incoming obstacles and activates a wrench wire system connected to the harness by pulling the body of the pilot in their programmed sides. Along the front of the glider is an additional sensor (infrared) in case uses of emergency stalling when landing. 
